@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#04101d">
+  <title>Elevador ESP32 — Supervisório</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <main class="dashboard">
+    <header class="header panel">
+      <div class="brand-icon" aria-hidden="true"><svg viewBox="0 0 64 64">
+          <rect x="9" y="7" width="46" height="51" rx="7" fill="none" stroke="currentColor" stroke-width="3" />
+          <path d="M18 48V19h28v29M32 19v29" fill="none" stroke="currentColor" stroke-width="3" />
+          <circle cx="32" cy="13" r="2.5" fill="currentColor" />
+        </svg></div>
+      <div class="header-copy">
+        <h1>Elevador <span>ESP32</span></h1>
+        <p>Controle e monitoramento via Wi-Fi</p>
+      </div>
+      <div class="connection">
+        <div class="wifi-icon" aria-hidden="true">⌁</div><span class="connection-label"><i class="status-dot"></i><span
+            id="connectionText">Modo simulação</span></span>
+      </div><button type="button" id="powerButton" class="power-button" aria-pressed="true"
+        aria-label="Desligar elevador" title="Ligar/desligar elevador"><span class="power-symbol">⏻</span><span
+          id="powerLabel">ON</span></button>
+    </header>
+
+    <section class="main-grid" aria-label="Painel principal do elevador">
+      <div class="left-column">
+        <article class="panel metric">
+          <h2>Andar atual</h2>
+          <div class="metric-box"><strong id="currentFloor" aria-live="polite">3º</strong><span>andar</span></div>
+        </article>
+        <article class="panel metric status-panel">
+          <h2>Status</h2>
+          <div id="statusIcon" class="giant-symbol">■</div><strong id="statusText" class="status-word">Parado</strong>
+        </article>
+        <article class="panel metric destination-panel">
+          <h2>Destino</h2>
+          <div class="metric-box destination-box"><strong id="destinationFloor">—</strong><span
+              id="destinationSuffix">Sem chamada</span></div>
+        </article>
+      </div>
+
+      <article class="shaft-panel" aria-label="Visualização animada da cabine em quatro andares">
+        <div class="motor-top"><span class="motor"></span><span class="pulley"></span></div>
+        <div class="shaft" id="shaft">
+          <div class="rail left-rail"></div>
+          <div class="rail right-rail"></div>
+          <div class="cable" aria-hidden="true"></div>
+          <div class="shaft-light shaft-light-4"></div>
+          <div class="shaft-light shaft-light-3"></div>
+          <div class="shaft-light shaft-light-2"></div>
+          <div class="shaft-light shaft-light-1"></div>
+          <div class="floor-mark" style="--floor:4"><span>4º</span><i></i></div>
+          <div class="floor-mark" style="--floor:3"><span>3º</span><i></i></div>
+          <div class="floor-mark" style="--floor:2"><span>2º</span><i></i></div>
+          <div class="floor-mark" style="--floor:1"><span>1º</span><i></i></div>
+          <div class="cab" id="cab" style="--position:3" aria-label="Cabine posicionada no terceiro andar">
+            <div class="cab-top"></div>
+            <div class="cab-inside">
+              <div class="cab-glow"></div>
+              <div class="cab-door cab-door-left"></div>
+              <div class="cab-door cab-door-right"></div>
+            </div>
+            <div class="cab-bottom"></div>
+          </div>
+        </div>
+      </article>
+
+      <div class="right-column">
+        <article class="panel indicators">
+          <h2>Indicadores</h2>
+          <div class="sensor-rows" id="sensorRows">
+            <div class="sensor-row" data-sensor="4"><span class="led"></span><span>4º andar</span></div>
+            <div class="sensor-row active" data-sensor="3"><span class="led"></span><span>3º andar</span></div>
+            <div class="sensor-row" data-sensor="2"><span class="led"></span><span>2º andar</span></div>
+            <div class="sensor-row" data-sensor="1"><span class="led"></span><span>1º andar</span></div>
+          </div>
+          <hr>
+          <h2>Movimento</h2>
+          <div class="movement-row" id="upIndicator"><span class="direction-circle">↑</span><span>Subindo</span></div>
+          <div class="movement-row" id="downIndicator"><span class="direction-circle">↓</span><span>Descendo</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel call-panel" aria-labelledby="callTitle">
+      <h2 id="callTitle">Chamar andar</h2>
+      <div class="floor-buttons">
+        <button type="button" class="floor-button" data-call="1" aria-label="Chamar primeiro andar">1º</button>
+        <button type="button" class="floor-button" data-call="2" aria-label="Chamar segundo andar">2º</button>
+        <button type="button" class="floor-button" data-call="3" aria-label="Chamar terceiro andar">3º</button>
+        <button type="button" class="floor-button" data-call="4" aria-label="Chamar quarto andar">4º</button>
+      </div>
+      <p id="helpText" class="foot-note" aria-live="polite">Selecione o andar desejado para enviar uma chamada.</p>
+    </section>
+    <footer><span class="mode-tag">● SIMULAÇÃO LOCAL</span><span>Layout preparado para futura integração com o
+        ESP32</span></footer>
+  </main>
+</body>
+
+</html>

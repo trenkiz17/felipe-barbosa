@@ -1,0 +1,22 @@
+ELEVADOR ESP32 - INTERFACE NEON (SIMULAÇÃO)
+
+1. Extraia o ZIP.
+2. Abra a pasta no Visual Studio Code.
+3. Abra o arquivo index.html no navegador (ou use Live Server).
+4. Clique em 1º, 2º, 3º ou 4º para testar a cabine animada.
+5. Para personalizar cores, tamanhos e posição dos elementos, edite style.css.
+6. Para mudar textos e estrutura, edite index.html.
+7. Para modificar a simulação e seus tempos, edite script.js.
+
+ATENÇÃO: esta versão funciona exclusivamente em SIMULAÇÃO LOCAL.
+Não se conecta ao ESP32, não lê sensores e não comanda o motor.
+A seção de portas foi removida a pedido do usuário.
+No celular, o painel ocupa a altura da tela sem rolagem vertical.
+
+Ao conectar ao ESP32, os quatro sensores físicos deverão determinar a posição
+confirmada; a animação entre pisos será apenas estimada, e o firmware do ESP32
+permanecerá responsável pelas proteções e pelo comando real do motor.
+
+ATUALIZACAO: Botao ON/OFF no cabecalho. OFF desativa botoes, descarta chamadas e congela animacao. ON habilita novas chamadas.
+O texto pequeno abaixo de Andar atual foi removido.
+ATENCAO: Desligar aqui apenas pausa a SIMULACAO no navegador. Ao integrar com o motor real, o bloqueio das chamadas e a parada segura devem ser implementados no ESP32 (com protecoes de hardware independentes).
